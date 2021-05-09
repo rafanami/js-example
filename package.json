@@ -1,0 +1,18 @@
+{
+  "name": "js-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rafanami/js-example.git",
+  "author": "rafanami <rafanami@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "luxon": "^1.26.0",
+    "ramda": "^0.27.1"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
+  "scripts": {
+    "test": "jest --watch"
+  }
+}
