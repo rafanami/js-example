@@ -1,16 +1,16 @@
 let shoppingCart = []
-let shoppingCartTotal = 0;
-let domToWrite = ``;
+let shoppingCartTotal = { total: 0 };
+let domItems = [];
 
 const setCartTotal = () => {
-    domToWrite = domToWrite.concat(`Cart Total: ${shoppingCartTotal}\n`);
+    domItems.push(`Cart Total: ${shoppingCartTotal.total}\n`);
 }
 
 const calculateCartTotal = () => {
-    shoppingCartTotal = 0;
+    shoppingCartTotal.total = 0;
     for (let i = 0; i < shoppingCart.length; i++) {
         const item = shoppingCart[i];
-        shoppingCartTotal += item.price;
+        shoppingCartTotal.total += item.price;
     }
     setCartTotal();
 }
@@ -24,28 +24,27 @@ const addItemToCart = (name, price) => {
 }
 
 const updateTax = () => {
-    domToWrite = domToWrite.concat(`Total taxes: ${shoppingCartTotal * 0.1}\n`);
+    domItems.push(`Total taxes: ${shoppingCartTotal.total * 0.1}\n`);
 }
 
 const renderPage = (selectedProducts) => {
-    shoppingCart = []
-    shoppingCartTotal = 0;
-    domToWrite = ``;
-
     for (let i = 0; i < selectedProducts.length; i++) {
         const selectedItem = selectedProducts[i];
         addItemToCart(selectedItem.name, selectedItem.price);
     }
 
     if (shoppingCart.length === 0) {
-        domToWrite = domToWrite.concat('Shopping Cart is Empty!\n');
+        setCartTotal();
+        updateTax();
+        domItems.push('Shopping Cart is Empty!\n');
         return;
     }
-    domToWrite = domToWrite.concat('Item   | Price\n');
+    domItems.push('Item   | Price\n');
     for (let i = 0; i < shoppingCart.length; i++) {
         const item = shoppingCart[i];
-        domToWrite = domToWrite.concat(`${item.name}   | ${item.price}\n`);
+        domItems.push(`${item.name}   | ${item.price}\n`);
     }
+    const domToWrite = domItems.join("");
     console.log(domToWrite);
     // for tests
     return domToWrite;

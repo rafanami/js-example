@@ -13,6 +13,7 @@
     "jest": "^26.6.3"
   },
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "run:render": "node ./render.js"
   }
 }
